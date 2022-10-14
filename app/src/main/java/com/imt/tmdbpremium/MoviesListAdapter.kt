@@ -18,12 +18,10 @@ class MoviesListAdapter(private val onClick: (Movie) -> Unit) : RecyclerView.Ada
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val title: TextView
-        val releaseDate: TextView
 
         init {
             with(view) {
                 title = findViewById(R.id.movieTitleItem)
-                releaseDate = findViewById(R.id.movieReleaseDateItem)
 
                 setOnClickListener { onClick(dataSet[adapterPosition]) }
             }
@@ -38,7 +36,6 @@ class MoviesListAdapter(private val onClick: (Movie) -> Unit) : RecyclerView.Ada
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.releaseDate.text = dataSet[position].releaseDate.toString()
         holder.title.text = dataSet[position].title
 
 //        holder.itemView.setOnClickListener { onClick(dataSet[position]) }

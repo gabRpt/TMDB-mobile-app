@@ -6,6 +6,7 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.annotation.RequiresApi
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
@@ -31,7 +32,7 @@ class MoviesListActivity : AppCompatActivity() {
 
         val moviesList = findViewById<RecyclerView>(R.id.movieList)
         moviesList.adapter = moviesListAdapter
-        moviesList.layoutManager = LinearLayoutManager(this)
+        moviesList.layoutManager = GridLayoutManager(this, 3)
     }
 
     private fun navigateToDetail(movie: Movie) {
