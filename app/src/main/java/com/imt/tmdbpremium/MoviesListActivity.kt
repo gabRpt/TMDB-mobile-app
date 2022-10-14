@@ -1,5 +1,7 @@
 package com.imt.tmdbpremium
 
+import android.content.ClipData.newIntent
+import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -19,7 +21,9 @@ class MoviesListActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
 
-        val moviesListAdapter = MoviesListAdapter()
+        val moviesListAdapter = MoviesListAdapter({
+            navigateToDetail(it)
+        })
 
         tmdbService.getLatestMovies(success = {
             moviesListAdapter.dataSet = it
@@ -28,5 +32,11 @@ class MoviesListActivity : AppCompatActivity() {
         val moviesList = findViewById<RecyclerView>(R.id.movieList)
         moviesList.adapter = moviesListAdapter
         moviesList.layoutManager = LinearLayoutManager(this)
+    }
+
+    private fun navigateToDetail(movie: Movie) {
+        val intent = Intent(this, MovieDetailActivity::class.java)
+        intent.putExtra(MovieDetailActivity.INTENT_PARAM_ID, movie.id)
+        startActivity(intent)
     }
 }

@@ -1,14 +1,13 @@
 package com.imt.tmdbpremium
 
 import android.annotation.SuppressLint
-import android.content.ClipData.newIntent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class MoviesListAdapter(  ) : RecyclerView.Adapter<MoviesListAdapter.ViewHolder>() {
+class MoviesListAdapter(private val onClick: (Movie) -> Unit) : RecyclerView.Adapter<MoviesListAdapter.ViewHolder>() {
 
     var dataSet: List<Movie> = emptyList()
         @SuppressLint("NotifyDataSetChanged")
@@ -26,11 +25,7 @@ class MoviesListAdapter(  ) : RecyclerView.Adapter<MoviesListAdapter.ViewHolder>
                 title = findViewById(R.id.movieTitleItem)
                 releaseDate = findViewById(R.id.movieReleaseDateItem)
 
-                setOnClickListener {
-                    val movie = dataSet[adapterPosition]
-                    val intent = MovieDetailActivity.newIntent(context, movie.id)
-                    context.startActivity(intent)
-                }
+                setOnClickListener { onClick(dataSet[adapterPosition]) }
             }
         }
     }
@@ -43,8 +38,10 @@ class MoviesListAdapter(  ) : RecyclerView.Adapter<MoviesListAdapter.ViewHolder>
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.title.text = dataSet[position].title
         holder.releaseDate.text = dataSet[position].releaseDate.toString()
+        holder.title.text = dataSet[position].title
+
+//        holder.itemView.setOnClickListener { onClick(dataSet[position]) }
     }
 
     override fun getItemCount(): Int =
