@@ -14,11 +14,11 @@ class MovieDetailActivity : AppCompatActivity() {
         super.onStart()
 
         val movieId = 1;
-        val movie = TmdbService().getMovieById(movieId)
-
-        findViewById<TextView>(R.id.movieTitle).text = movie.title
-        findViewById<TextView>(R.id.movieOverview).text = movie.overview
-        findViewById<TextView>(R.id.movieRating).text = movie.averageVote.toString()
-        findViewById<TextView>(R.id.movieCast).text = movie.cast.joinToString()
+//        val movie = TmdbService().getMovieDetail(movieId)
+//
+//        findViewById<TextView>(R.id.movieTitle).text = movie
+//        findViewById<TextView>(R.id.movieOverview).text = movie.overview
+//        findViewById<TextView>(R.id.movieRating).text = movie.averageVote.toString()
+//        findViewById<TextView>(R.id.movieCast).text = movie.cast.joinToString()
     }
 }

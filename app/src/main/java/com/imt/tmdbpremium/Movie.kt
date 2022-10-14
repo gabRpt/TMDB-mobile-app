@@ -1,11 +1,11 @@
 package com.imt.tmdbpremium
 
+import java.time.LocalDate
+
 data class Movie(
-    val id: Int,
-    val posterUrl: String,
-    val title: String,
-    val averageVote: Float,
-    val releaseDate: String,
-    val overview: String,
-    val cast: List<String>
+    var id: Int = -1,
+    var posterUrl: String? = null,
+    var title: String? = null,
+    var releaseDate: LocalDate? = null
 )
+
