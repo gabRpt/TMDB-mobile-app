@@ -1,4 +1,4 @@
-package com.imt.tmdbpremium
+package com.imt.tmdbpremium.pages.list
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.imt.tmdbpremium.R
+import com.imt.tmdbpremium.entities.Movie
 
 class MoviesListAdapter(private val onClick: (Movie) -> Unit) : RecyclerView.Adapter<MoviesListAdapter.ViewHolder>() {
 
