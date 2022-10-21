@@ -1,8 +1,8 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.TMDBPremium" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <style name="Theme.TMDBPremium" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">#333333</item>
+        <item name="colorPrimary">@color/black</item>
         <item name="colorPrimaryVariant">#333333</item>
         <item name="colorOnPrimary">#333333</item>
         <!-- Secondary brand color. -->

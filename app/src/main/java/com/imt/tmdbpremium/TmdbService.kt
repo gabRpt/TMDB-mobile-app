@@ -3,6 +3,7 @@ package com.imt.tmdbpremium
 import android.os.Build
 import androidx.annotation.RequiresApi
 
+@RequiresApi(Build.VERSION_CODES.O)
 class TmdbService {
     private val dataSource = MockDataSource()
 

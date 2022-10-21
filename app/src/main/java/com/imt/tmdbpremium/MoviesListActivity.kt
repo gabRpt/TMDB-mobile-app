@@ -7,28 +7,36 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 class MoviesListActivity : AppCompatActivity() {
+    @RequiresApi(Build.VERSION_CODES.O)
     private val tmdbService: TmdbService = TmdbService()
+    private lateinit var moviesListAdapter: MoviesListAdapter
+    private var savedMovies: List<Movie>? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_movies_list)
+
+        savedMovies = savedInstanceState?.getParcelableArrayList<Movie>("MOVIES_LIST")
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onStart() {
         super.onStart()
 
-        val moviesListAdapter = MoviesListAdapter({
+        moviesListAdapter = MoviesListAdapter({
             navigateToDetail(it)
         })
 
-        tmdbService.getLatestMovies(success = {
-            moviesListAdapter.dataSet = it
-        }, failure = {})
+        if (savedMovies == null) {
+            tmdbService.getLatestMovies(success = {
+                moviesListAdapter.dataSet = it
+            }, failure = {})
+        } else {
+            moviesListAdapter.dataSet = savedMovies as List<Movie>
+        }
 
         val moviesList = findViewById<RecyclerView>(R.id.movieList)
         moviesList.adapter = moviesListAdapter
@@ -39,5 +47,11 @@ class MoviesListActivity : AppCompatActivity() {
         val intent = Intent(this, MovieDetailActivity::class.java)
         intent.putExtra(MovieDetailActivity.INTENT_PARAM_ID, movie.id)
         startActivity(intent)
+    }
+
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        outState.putParcelableArrayList("MOVIES_LIST", ArrayList(moviesListAdapter.dataSet))
+        super.onSaveInstanceState(outState)
     }
 }
