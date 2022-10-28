@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">TMDB Premium</string>
+    <string name="votes">%1$s (%2$s)</string>
 </resources>

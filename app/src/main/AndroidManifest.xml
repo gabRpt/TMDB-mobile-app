@@ -14,7 +14,7 @@
         android:theme="@style/Theme.TMDBPremium"
         tools:targetApi="31">
         <activity
-            android:name=".MoviesListActivity"
+            android:name=".pages.list.MoviesListActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -33,7 +33,7 @@
             android:exported="true" />
 
         <activity
-            android:name=".MovieDetailActivity"
+            android:name=".pages.detail.MovieDetailActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
